@@ -154,23 +154,25 @@ contactForm.addEventListener('submit', (e) => {
     contactForm.reset();
 });
 // 回到頂部按鈕功能
-const backToTopButton = document.getElementById('backToTop');
-
-// 監聽滾動事件
-window.addEventListener('scroll', () => {
-    // 當頁面滾動超過300px時顯示按鈕
-    if (window.scrollY > 300) {
-        backToTopButton.classList.add('visible');
-    } else {
-        backToTopButton.classList.remove('visible');
-    }
-});
-
-// 點擊按鈕回到頂部
-backToTopButton.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth' // 平滑滾動效果
+document.addEventListener('DOMContentLoaded', function() {
+    const backToTopButton = document.getElementById('backToTop');
+    
+    // 監聽滾動事件
+    window.addEventListener('scroll', () => {
+        // 當頁面滾動超過300px時顯示按鈕
+        if (window.scrollY > 300) {
+            backToTopButton.classList.add('visible');
+        } else {
+            backToTopButton.classList.remove('visible');
+        }
+    });
+    
+    // 點擊按鈕回到頂部
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' // 平滑滾動效果
+        });
     });
 });
 // 禁止右键菜单
