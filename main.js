@@ -126,7 +126,7 @@ function checkAnswer(selectedOption) {
     if (selectedOption === question.correct) {
         score += 10;
     }
-    
+
     currentQuestion++;
     if (currentQuestion < quizData.length) {
         showQuestion();
@@ -153,24 +153,85 @@ contactForm.addEventListener('submit', (e) => {
     alert('感謝您的訊息！我們會盡快回覆。');
     contactForm.reset();
 });
+// 回到頂部按鈕功能
+const backToTopButton = document.getElementById('backToTop');
 
+// 監聽滾動事件
+window.addEventListener('scroll', () => {
+    // 當頁面滾動超過300px時顯示按鈕
+    if (window.scrollY > 300) {
+        backToTopButton.classList.add('visible');
+    } else {
+        backToTopButton.classList.remove('visible');
+    }
+});
+
+// 點擊按鈕回到頂部
+backToTopButton.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // 平滑滾動效果
+    });
+});
+// 禁止右键菜单
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    return false;
+});
+
+// 禁止F12、Ctrl+Shift+I、Ctrl+Shift+J、Ctrl+U
+document.addEventListener('keydown', function(e) {
+    if (
+        e.keyCode === 123 || // F12
+        (e.ctrlKey && e.shiftKey && e.keyCode === 73) || // Ctrl+Shift+I
+        (e.ctrlKey && e.shiftKey && e.keyCode === 74) || // Ctrl+Shift+J
+        (e.ctrlKey && e.keyCode === 85) // Ctrl+U
+    ) {
+        e.preventDefault();
+        return false;
+    }
+});
+
+// 禁止拖拽
+document.addEventListener('dragstart', function(e) {
+    e.preventDefault();
+    return false;
+});
+
+// 禁止复制
+document.addEventListener('copy', function(e) {
+    e.preventDefault();
+    return false;
+});
+
+// 禁止剪切
+document.addEventListener('cut', function(e) {
+    e.preventDefault();
+    return false;
+});
+
+// 禁止粘贴
+document.addEventListener('paste', function(e) {
+    e.preventDefault();
+    return false;
+});
 // 導航欄滾動效果
 let lastScroll = 0;
 const navbar = document.querySelector('.navbar');
 
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
-    
+
     if (currentScroll <= 0) {
         navbar.style.transform = 'translateY(0)';
         return;
     }
-    
+
     if (currentScroll > lastScroll && !navbar.classList.contains('scroll-down')) {
         navbar.style.transform = 'translateY(-100%)';
     } else if (currentScroll < lastScroll && navbar.classList.contains('scroll-down')) {
         navbar.style.transform = 'translateY(0)';
     }
-    
+
     lastScroll = currentScroll;
-}); 
+});
